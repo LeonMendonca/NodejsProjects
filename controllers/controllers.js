@@ -30,6 +30,17 @@ class Controllers {
       res.json({error:error.message});
     }
   }
+
+  static updateUserById = async function(req,res) {
+    try {
+      const id = req.params.userId;
+      const toUpdate = req.body;
+      const result = await Service.UpdateUserById(id,toUpdate);
+      res.json({status:result});
+    } catch(error) {
+      res.json({error:error.message})
+    }
+  }
 }
 
 

@@ -13,6 +13,14 @@ const joiSchema = Joi.object({
   zipcode: Joi.number().integer().min(400000).max(499999).required()
 })
 
+const joiSchemaUpdate = Joi.object({
+  name: Joi.string(),
+  email: Joi.string().email(),
+  age: Joi.number().integer().min(15).max(60),
+  city: Joi.string(),
+  zipcode: Joi.number().integer().min(400000).max(499999)
+})
+
 class Service {
   static async CreateUser(body) {
     const dtoObjectReq = new DtoRequest(body);
@@ -49,6 +57,26 @@ class Service {
       if(!userDb) { return null };
       const user = new DtoResponse(userDb);
       return user;
+    } catch(error) {
+      throw error;
+    }
+  }
+
+  static async UpdateUserById(id,toUpdate) {
+    try {
+      const toUpdateObj = new DtoRequest(toUpdate);
+      //remove the undefined properties
+      for(let key in toUpdateObj) {
+        if(toUpdateObj[key] === undefined || toUpdateObj[key] === null) {
+          delete toUpdateObj[key];
+        }
+      }
+      const { error } = joiSchemaUpdate.validate(toUpdateObj)
+      if(error) { 
+        throw error 
+      };
+      const result = await DaoUser.updateUserById(id,toUpdateObj)
+      return result;
     } catch(error) {
       throw error;
     }

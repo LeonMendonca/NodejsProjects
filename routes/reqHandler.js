@@ -9,4 +9,6 @@ reqHandler.get('/worko/user/:userId',Controllers.findOneUser)
 
 reqHandler.post('/worko/user',Controllers.createUser);
 
+reqHandler.put('/worko/user/:userId',Controllers.updateUserById);
+
 export { reqHandler };

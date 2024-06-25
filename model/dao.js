@@ -27,6 +27,19 @@ class DaoUser {
       throw new Error('not a valid id');
     }
   }
+
+  static async updateUserById(id,toUpdatePrecise) {
+    try {
+      const result = await userModel.findOneAndUpdate({_id:id}, {$set: toUpdatePrecise });
+      if(!result) {
+        return null;
+      }
+      const name = toUpdatePrecise?.name ?? result.name
+      return `${name} has been updated`;
+    } catch(error) {
+      throw error;
+    }
+  }
 }
 
 export { DaoUser };
