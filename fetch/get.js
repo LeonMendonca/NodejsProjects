@@ -1,6 +1,6 @@
 const url = "http://localhost:3000"
 
-const res = await fetch(`${url}/worko/user`, {
+const res = await fetch(`${url}/worko/users`, {
   method:'GET'
 })
 const response = await res.text();

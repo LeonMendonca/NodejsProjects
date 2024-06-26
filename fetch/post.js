@@ -1,10 +1,10 @@
 const url = 'http://localhost:3000';
 
 const body = {
-  name:"alice",
-  email:"alice@gmail.com",
-  age:24,
-  city:'mumbai',
+  name:"leon",
+  email:"leon@gmail.com",
+  age:20,
+  city:"mumbai",
   zipcode:400059
 };
 
@@ -14,5 +14,5 @@ const res = await fetch(`${url}/worko/user`,{
   body:JSON.stringify(body)
 });
 const response = await res.text();
-console.log(response);
+console.log(JSON.parse(response));
 

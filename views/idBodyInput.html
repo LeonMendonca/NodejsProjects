@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Assignment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="./mdbootstrap/scriptLoadLink.js"></script>
+    <script src="./fetch/postpatchput.js"></script>
+  </head>
+  <body class="d-flex align-items-center justify-content-center vh-100">
+    <div class="container">
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="text" id="id" class="form-control" name="id"/>
+        <label class="form-label" for="id">Enter ID</label>
+        <div class="form-helper">For put or patch</div>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="email" id="email" class="form-control" name="email"/>
+        <label class="form-label" for="email">Email</label>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="text" id="name" class="form-control" name="name"/>
+        <label class="form-label" for="name">Name</label>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="text" id="city" class="form-control" name="city"/>
+        <label class="form-label" for="city">City</label>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="number" id="age" class="form-control" name="age"/>
+        <label class="form-label" for="age">Age</label>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <input type="number" id="zipcode" class="form-control" name="zipcode"/>
+        <label class="form-label" for="zipcode">Zipcode</label>
+      </div>
+      <div class="form-outline mb-5" data-mdb-input-init>
+        <label class="form-label" for="select">Method</label>
+        <select data-mdb-select-init id="select" name="select">
+          <option value="post">POST</option>
+          <option value="patch">PATCH</option>
+          <option value="put">PUT</option>
+        </select>
+      </div>
+      <button type="button" id="enter" class="btn btn-outline-primary" data-mdb-ripple-init>Enter</button>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
+    </div>
+  </body>
+</html>

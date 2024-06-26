@@ -1,6 +1,9 @@
 import { DtoRequest } from '../dto/dtoreq.js';
 import { DtoResponse } from '../dto/dtores.js';
 
+import { Types } from 'mongoose';
+const { ObjectId } = Types;
+
 import Joi from 'joi'
 
 import { DaoUser } from './dao.js';
@@ -13,7 +16,7 @@ const joiSchema = Joi.object({
   zipcode: Joi.number().integer().min(400000).max(499999).required()
 })
 
-const joiSchemaUpdate = Joi.object({
+const joiSchemaPatch = Joi.object({
   name: Joi.string(),
   email: Joi.string().email(),
   age: Joi.number().integer().min(15).max(60),
@@ -53,6 +56,9 @@ class Service {
 
   static async GetUserById(id) {
     try {
+      if(!ObjectId.isValid(id)) {
+        throw new Error("invalid id");
+      }
       const userDb = await DaoUser.getUserById(id);
       if(!userDb) { return null };
       const user = new DtoResponse(userDb);
@@ -62,8 +68,11 @@ class Service {
     }
   }
 
-  static async UpdateUserById(id,toUpdate) {
+  static async PatchUpdateUserById(id,toUpdate) {
     try {
+      if(!ObjectId.isValid(id)) {
+        throw new Error("invalid id");
+      }
       const toUpdateObj = new DtoRequest(toUpdate);
       //remove the undefined properties
       for(let key in toUpdateObj) {
@@ -71,16 +80,46 @@ class Service {
           delete toUpdateObj[key];
         }
       }
-      const { error } = joiSchemaUpdate.validate(toUpdateObj)
+      const { error } = joiSchemaPatch.validate(toUpdateObj)
       if(error) { 
-        throw error 
+        throw error;
       };
-      const result = await DaoUser.updateUserById(id,toUpdateObj)
+      const result = await DaoUser.patchUpdateUserById(id,toUpdateObj)
       return result;
     } catch(error) {
       throw error;
     }
   }
+
+  static async PutUpdateUserById(id,toUpdate) {
+    try {
+      if(!ObjectId.isValid(id)) {
+        throw new Error("invalid id");
+      }
+      const toUpdateObj = new DtoRequest(toUpdate);
+      const { error } = joiSchema.validate(toUpdateObj);
+      if(error) {
+        throw error;
+      }
+      const result = await DaoUser.putUpdateUserById(id,toUpdateObj);
+      return result;
+    } catch(error) {
+      throw error;
+    }
+  }
+
+  static async DeleteUserById(id) {
+    try {
+      if(!ObjectId.isValid(id)) {
+        throw new Error("invalid id");
+      }
+      const result = await DaoUser.deleteUserById(id);
+      return result;
+    } catch(error) {
+      throw error;
+    }
+  }
+
 }
 
 export { Service };
