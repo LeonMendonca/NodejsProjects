@@ -1,7 +1,9 @@
 # Getting started
 ## 1. Install Dependencies
 Install all the `node_modules` dependencies and dev-dependencies by checking the `package.json` file.
-bash ```npm install```
+```bash
+npm install
+```
 
 ## 2. Start the local MongoDB service
 ```sudo systemctl start mongod```
