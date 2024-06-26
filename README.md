@@ -18,7 +18,10 @@ npx nodemon
 Assuming that nodemon is not installed globally, this will start the index.js file. You should see the "listening to port" message.
 
 ## 4. Access the Application
-Go to your web browser, and type: ```bash localhost:3000```
+Go to your web browser, and type:
+```bash 
+localhost:3000
+```
 
 ## 5. Check Server Response
 Open the console of your browser to check the response sent by the server.
